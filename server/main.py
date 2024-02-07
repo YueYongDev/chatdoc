@@ -67,13 +67,17 @@ async def handle(doc_id):
 
 @app.post("/upload")
 async def handle(background_task: BackgroundTasks, file: UploadFile = File(...)):
+    print('start upload file...')
     start = time.time()
     size = file.size
     data = await file.read()
     doc_id = hashlib.md5(data).hexdigest()
     doc = Doc(doc_id=doc_id, filename=file.filename)
+    print('file upload success')
     await doc.save(content=data)
+    print('insert to db...')
     Docs(uid=0, doc_id=doc_id, doc_name=file.filename, doc_type=file.content_type, size=size).insert()
+    print('do index task...')
     background_task.add_task(file_task, doc_id)
     return {"message": "success", 'time': time.time() - start, 'filename': file.filename}
     # try:
