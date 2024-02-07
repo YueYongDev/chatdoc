@@ -11,6 +11,8 @@ from llama_index import download_loader
 from zhipu.zhipu_embedding import ZhiPuEmbedding
 from zhipu.zhipu_llm import ZhiPuLLM
 
+from server.common.consts import BASE_DIR
+
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
