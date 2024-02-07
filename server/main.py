@@ -21,6 +21,9 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory="data"), name="static")
 
+@app.get("/hello")
+async def handle():
+    return {"data": "hello"}
 
 @app.get("/my_docs")
 async def handle():
