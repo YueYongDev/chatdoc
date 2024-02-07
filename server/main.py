@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, BackgroundTasks
+from fastapi import FastAPI, File, UploadFile, BackgroundTasks, __version__
 import time
 from server.util.doc_util import Doc
 import hashlib
@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 import uvicorn
 from pydantic import BaseModel
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 origins = ["http://127.0.0.1", "http://localhost:5173", "http://10.23.172.12:5173"]
@@ -21,9 +22,36 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory="data"), name="static")
 
-@app.get("/hello")
-async def handle():
-    return {"data": "hello"}
+html = f"""
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FastAPI on Vercel</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <div class="bg-gray-200 p-4 rounded-lg shadow-lg">
+            <h1>Hello from FastAPI@{__version__}</h1>
+            <ul>
+                <li><a href="/docs">/docs</a></li>
+                <li><a href="/redoc">/redoc</a></li>
+            </ul>
+            <p>Powered by <a href="https://vercel.com" target="_blank">Vercel</a></p>
+        </div>
+    </body>
+</html>
+"""
+
+
+@app.get("/")
+async def root():
+    return HTMLResponse(html)
+
+
+@app.get('/ping')
+async def hello():
+    return {'res': 'pong', 'version': __version__, "time": time()}
+
 
 @app.get("/my_docs")
 async def handle():
