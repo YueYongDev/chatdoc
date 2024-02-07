@@ -13,3 +13,4 @@ llama_index== 0.9.10
 python-multipart==0.0.7
 pip-system-certs==4.0
 zhipuai==2.0.1
+httpx==0.26.0
