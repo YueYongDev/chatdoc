@@ -12,9 +12,11 @@ const supportFileType = ['application/pdf', 'application/epub+zip', 'text/markdo
 const beforeUpload = (rawFile) => {
   if (!supportFileType.includes(rawFile.type)) {
     console.log(rawFile.type)
+    window.alert('仅支持 .pdf, .epub, .md, .txt 类型文件')
     ElMessage.error('仅支持 .pdf, .epub, .md, .txt 类型文件')
     return false
   } else if (rawFile.size / 1024 / 1024 > 2) {
+    window.alert('文件大小不能超过 2MB!')
     ElMessage.error('文件大小不能超过 2MB!')
     return false
   }
