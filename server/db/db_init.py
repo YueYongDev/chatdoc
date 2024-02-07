@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-os.remove("../database.db")
+os.remove("database.db")
 
 table_docs  = """
 create table if not exists docs
@@ -30,7 +30,7 @@ create table if not exists messages
 );
 """
 
-con = sqlite3.connect("../database.db")
+con = sqlite3.connect("database.db")
 
 cur = con.cursor()
 
