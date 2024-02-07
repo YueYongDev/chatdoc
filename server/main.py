@@ -68,17 +68,25 @@ async def handle(doc_id):
 @app.post("/upload")
 async def handle(background_task: BackgroundTasks, file: UploadFile = File(...)):
     start = time.time()
-    try:
-        size = file.size
-        data = await file.read()
-        doc_id = hashlib.md5(data).hexdigest()
-        doc = Doc(doc_id=doc_id, filename=file.filename)
-        await doc.save(content=data)
-        Docs(uid=0, doc_id=doc_id, doc_name=file.filename, doc_type=file.content_type, size=size).insert()
-        background_task.add_task(file_task, doc_id)
-        return {"message": "success", 'time': time.time() - start, 'filename': file.filename}
-    except Exception as e:
-        return {"message": str(e), 'time': time.time() - start, 'filename': file.filename}
+    size = file.size
+    data = await file.read()
+    doc_id = hashlib.md5(data).hexdigest()
+    doc = Doc(doc_id=doc_id, filename=file.filename)
+    await doc.save(content=data)
+    Docs(uid=0, doc_id=doc_id, doc_name=file.filename, doc_type=file.content_type, size=size).insert()
+    background_task.add_task(file_task, doc_id)
+    return {"message": "success", 'time': time.time() - start, 'filename': file.filename}
+    # try:
+    #     size = file.size
+    #     data = await file.read()
+    #     doc_id = hashlib.md5(data).hexdigest()
+    #     doc = Doc(doc_id=doc_id, filename=file.filename)
+    #     await doc.save(content=data)
+    #     Docs(uid=0, doc_id=doc_id, doc_name=file.filename, doc_type=file.content_type, size=size).insert()
+    #     background_task.add_task(file_task, doc_id)
+    #     return {"message": "success", 'time': time.time() - start, 'filename': file.filename}
+    # except Exception as e:
+    #     return {"message": str(e), 'time': time.time() - start, 'filename': file.filename}
 
 
 class AddLink(BaseModel):
