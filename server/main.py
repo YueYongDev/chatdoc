@@ -1,9 +1,9 @@
 from fastapi import FastAPI, File, UploadFile, BackgroundTasks, __version__
 import time
-from server.util.doc_util import Doc
+from util.doc_util import Doc
 import hashlib
-from server.db.db_docs import Docs
-from server.db.db_msg import Msg
+from db.db_docs import Docs
+from db.db_msg import Msg
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 import uvicorn

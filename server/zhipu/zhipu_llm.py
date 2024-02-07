@@ -3,7 +3,7 @@ from typing import Any
 from llama_index.llms import CustomLLM
 from llama_index.llms.base import llm_completion_callback, CompletionResponse, LLMMetadata, CompletionResponseGen
 
-from server.zhipu.zhipu_utils import invoke_prompt
+from zhipu.zhipu_utils import invoke_prompt
 
 
 class ZhiPuLLM(CustomLLM):

@@ -8,10 +8,8 @@ from epub2txt import epub2txt
 from llama_index import SimpleDirectoryReader, ServiceContext, VectorStoreIndex, StorageContext, \
     load_index_from_storage
 from llama_index import download_loader
-
-from server.common.consts import BASE_DIR, PERSIST_DIR
-from server.zhipu.zhipu_embedding import ZhiPuEmbedding
-from server.zhipu.zhipu_llm import ZhiPuLLM
+from zhipu.zhipu_embedding import ZhiPuEmbedding
+from zhipu.zhipu_llm import ZhiPuLLM
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))

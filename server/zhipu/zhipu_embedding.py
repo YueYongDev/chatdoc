@@ -3,7 +3,7 @@ from typing import List, Any
 from llama_index.embeddings.base import BaseEmbedding
 from pydantic import PrivateAttr
 
-from server.zhipu.zhipu_utils import invoke_embedding
+from zhipu.zhipu_utils import invoke_embedding
 
 
 class ZhiPuEmbedding(BaseEmbedding):
