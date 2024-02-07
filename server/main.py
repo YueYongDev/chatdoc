@@ -96,14 +96,19 @@ class AddLink(BaseModel):
 @app.post("/add_link")
 async def handle(background_task: BackgroundTasks, link: AddLink):
     start = time.time()
-    try:
-        print(link)
-        doc_id = hashlib.md5(link.link.encode('utf8')).hexdigest()
-        Docs(uid=0, doc_id=doc_id, doc_name=link.link, doc_type='web', size=0).insert()
-        background_task.add_task(file_task, doc_id)
-        return {"message": "success", 'time': time.time() - start}
-    except Exception as e:
-        return {"message": str(e), 'time': time.time() - start}
+    print(link)
+    doc_id = hashlib.md5(link.link.encode('utf8')).hexdigest()
+    Docs(uid=0, doc_id=doc_id, doc_name=link.link, doc_type='web', size=0).insert()
+    background_task.add_task(file_task, doc_id)
+    return {"message": "success", 'time': time.time() - start}
+    # try:
+    #     print(link)
+    #     doc_id = hashlib.md5(link.link.encode('utf8')).hexdigest()
+    #     Docs(uid=0, doc_id=doc_id, doc_name=link.link, doc_type='web', size=0).insert()
+    #     background_task.add_task(file_task, doc_id)
+    #     return {"message": "success", 'time': time.time() - start}
+    # except Exception as e:
+    #     return {"message": str(e), 'time': time.time() - start}
 
 
 @app.get("/ask/{doc_id}")
@@ -142,4 +147,4 @@ def file_task(doc_id: str):
 
 if __name__ == '__main__':
     print("start server")
-    uvicorn.run('main:app', host="0.0.0.0", reload=True)
+    uvicorn.run('main:app', host="0.0.0.0", port=8999, reload=True)
