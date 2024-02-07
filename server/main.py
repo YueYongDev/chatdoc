@@ -11,7 +11,7 @@ from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 
 app = FastAPI()
-origins = ["http://127.0.0.1", "http://localhost:5173", "http://10.23.172.12:5173"]
+origins = ["http://127.0.0.1", "http://localhost:5173", "http://10.23.172.12:5173","http://chatdoc-plum.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
