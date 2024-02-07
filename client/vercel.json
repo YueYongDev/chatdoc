@@ -3,6 +3,10 @@
         {
             "source": "/api/:path(.*)",
             "destination": "https://chatdoc-backend.ytools.xyz/:path"
+        },
+        {
+            "source": "/static/:path(.*)",
+            "destination": "https://chatdoc-backend.ytools.xyz/:path"
         }
     ]
 }
