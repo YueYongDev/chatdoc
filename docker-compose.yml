@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+  backend:
+    container_name: chatdoc-backend 
+    image: python:3.9-slim
+    command:
+      - /bin/sh
+      - -c
+      - |
+        pip install --upgrade pip
+        cd /data
+        ./start
+    volumes:
+      - ./server:/data
+  frontend:
+    image: node
+    container_name: chatdoc-frontend
+    ports:
+      - '5173:5173'
+    links:
+      - backend 
+    volumes:
+      - ./client:/data
+    command:
+      - /bin/sh
+      - -c
+      - |
+        npm install -g pnpm
+        cd /data
+        ./start 
