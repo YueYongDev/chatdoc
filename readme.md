@@ -2,15 +2,10 @@
 
 一个使用 `openai` 与文档对话的例子, 目前支持的文档类型 `.pdf`, `.epub`, `.md`, `.txt`, `.docx`, `web`
 
-![preview](./preview.png)
+## 后端
 
-## 启动后端
-
-```shell
-# my local python version 3.9.7
-cd server
-./start
-```
+后端为私有项目 👇
+[chatdoc-backend](https://github.com/YueYongDev/chatdoc-backend)
 
 ## 启动前端
 
@@ -19,10 +14,10 @@ cd server
 cd client
 ./start
 ```
-
+<!-- 
 ## Docker
 
 ```shell
 # 请先替换 docker-compose.yml 中的 OPEN_AI_KEY
 docker-compose up
-```
+``` -->
