@@ -5,8 +5,8 @@ function err(message) {
 function myFetch(input, init) {
     return new Promise((resolve, reject) => {
         fetch(input, init).then(res => {
-            json = resolve(res.json())
-            if (json.code != 0) {
+            let json = resolve(res.json())
+            if (json.code !== 0) {
                 err(json.message)
                 reject(new Error(json.message))
             } else {
@@ -18,7 +18,7 @@ function myFetch(input, init) {
     })
 }
 
-export async function fetchDcoList() {
+export async function fetchDocList() {
     return new Promise((resolve, reject) => {
         myFetch("/api/my_docs").then(res => resolve(res)).catch(e => reject(e))
     })
@@ -38,15 +38,27 @@ export async function fetchMsg(doc_id) {
 
 export async function fetchDelDoc(doc_id) {
     return new Promise((resolve, reject) => {
-        myFetch("/api/del/" + doc_id, { method: "DELETE" }).then(res => resolve(res)).catch(e => reject(e))
+        myFetch("/api/del/" + doc_id, {method: "DELETE"}).then(res => resolve(res)).catch(e => reject(e))
     })
 }
 
 export async function fetchAddLink(link) {
     return new Promise((resolve, reject) => {
         myFetch("/api/add_link", {
-            method: "POST", 
-            body: JSON.stringify({ link: link }), 
+            method: "POST",
+            body: JSON.stringify({link: link}),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(res => resolve(res)).catch(e => reject(e))
+    })
+}
+
+export async function reportAnswer(answer, doc_id) {
+    return new Promise((resolve, reject) => {
+        myFetch("/api/answer", {
+            method: "POST",
+            body: JSON.stringify({content: answer, doc_id: doc_id}),
             headers: {
                 "Content-Type": "application/json",
             }

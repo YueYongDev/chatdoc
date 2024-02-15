@@ -51,29 +51,30 @@ export function docType(doc) {
 }
 
 export function docUrl(doc) {
-    let base = location.origin
-    if (import.meta.env.DEV) {
-        base = `http://${location.hostname}:8000`
-    }
+    return doc.url
+    // let base = location.origin
+    // if (import.meta.env.DEV) {
+    //     base = `http://${location.hostname}:8000`
+    // }
 
-    if (doc['doc_type'] == "application/pdf") {
-        return "pdfjs/web/viewer.html?file=" + decodeURIComponent(`${base}/static/${doc.doc_id}/${doc.doc_name}`)
-    }
-    if (doc['doc_type'] == "application/epub+zip") {
-        return "epub/index.html?url=" + decodeURIComponent(`${base}/static/${doc.doc_id}/${doc.doc_name}`)
-    }
-    if (doc['doc_type'] == "text/markdown") {
-        return "md/index.html?url=" + decodeURIComponent(`${base}/static/${doc.doc_id}/${doc.doc_name}`)
-    }
-    if (doc['doc_type'] == "text/plain") {
-        return `${base}/static/${doc.doc_id}/${doc.doc_name}`
-    }
-    if (doc['doc_type'] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-        return "docx/index.html?url=" + decodeURIComponent(`${base}/static/${doc.doc_id}/${doc.doc_name}`)
-    }
-    if (doc['doc_type'] == "web") {
-        return doc.doc_name
-    }
+    // if (doc['doc_type'] == "application/pdf") {
+    //     return "pdfjs/web/viewer.html?file=" + decodeURIComponent(`${base}/static/${doc.doc_id}/${doc.doc_name}`)
+    // }
+    // if (doc['doc_type'] == "application/epub+zip") {
+    //     return "epub/index.html?url=" + decodeURIComponent(`${base}/static/${doc.doc_id}/${doc.doc_name}`)
+    // }
+    // if (doc['doc_type'] == "text/markdown") {
+    //     return "md/index.html?url=" + decodeURIComponent(`${base}/static/${doc.doc_id}/${doc.doc_name}`)
+    // }
+    // if (doc['doc_type'] == "text/plain") {
+    //     return `${base}/static/${doc.doc_id}/${doc.doc_name}`
+    // }
+    // if (doc['doc_type'] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+    //     return "docx/index.html?url=" + decodeURIComponent(`${base}/static/${doc.doc_id}/${doc.doc_name}`)
+    // }
+    // if (doc['doc_type'] == "web") {
+    //     return doc.doc_name
+    // }
 
 }
 
