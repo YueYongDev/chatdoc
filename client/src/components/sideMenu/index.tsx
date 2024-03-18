@@ -53,14 +53,14 @@ export default function SideMenu({
       )}
 
       <div className="mt-2 flex justify-between items-center">
-        <span className="text-xs text-gray-500">Made by Alan</span>
+        <span className="text-xs text-gray-500">Made by YueYong</span>
 
         <Space>
-          <Button
-            href="https://github.com/3Alan/DocsMind"
-            target="__blank"
-            icon={<GithubOutlined />}
-          ></Button>
+          {/*<Button*/}
+          {/*  href="https://github.com/3Alan/DocsMind"*/}
+          {/*  target="__blank"*/}
+          {/*  icon={<GithubOutlined />}*/}
+          {/*></Button>*/}
           <Button icon={<SettingOutlined />} onClick={onOpenSetting}></Button>
         </Space>
       </div>

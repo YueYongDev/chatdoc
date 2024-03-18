@@ -5,6 +5,9 @@ import type { PDFDocumentProxy } from 'pdfjs-dist';
 import { useEffect, useRef, useState } from 'react';
 import eventEmitter from '../../utils/eventEmitter';
 import PageSpin from '../pageSpin';
+import {pdfjs} from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function PdfViewer({ file }: { file: Blob }) {
   const [numPages, setNumPages] = useState<number>();
@@ -39,13 +42,15 @@ export default function PdfViewer({ file }: { file: Blob }) {
       className="w-[700px] bg-white h-full overflow-auto relative scroll-smooth rounded-lg shadow-md"
       file={file}
       onLoadSuccess={onDocumentLoadSuccess}
+      renderMode="canvas"
       options={{
-        cMapUrl: 'cmaps/',
-        standardFontDataUrl: 'standard_fonts/'
+        cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+        cMapPacked: true,
+        // standardFontDataUrl: 'standard_fonts/'
       }}
     >
       {Array.from(new Array(numPages), (_el, index) => (
-        <Page width={690} key={`page_${index + 1}`} pageNumber={index + 1} />
+        <Page width={690} key={`page_${index + 1}`} pageNumber={index + 1}  />
       ))}
     </Document>
   );

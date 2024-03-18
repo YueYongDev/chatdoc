@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash';
 import { FC, Fragment, KeyboardEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import eventEmitter from '../../utils/eventEmitter';
 import fetchRequest from '../../utils/fetch';
-import useOpenAiKey from '../../utils/useOpenAiKey';
+import userIdKey from '../../utils/userIdKey';
 import { MessageItem } from './constants';
 import Message from './Message';
 
@@ -28,7 +28,7 @@ const ChatWindow: FC<ChatWindowProps> = ({
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState('');
   const [messageList, setMessageList] = useState<MessageItem[]>([]);
-  const openAiKey = useOpenAiKey();
+  const userId = userIdKey();
 
   function cleanChat() {
     setMessageList([]);
@@ -71,13 +71,13 @@ const ChatWindow: FC<ChatWindowProps> = ({
       if (summarize) {
         res = await fetchRequest('/api/summarize', {
           file: fullFileName,
-          openAiKey
+          userId
         });
       } else {
         res = await fetchRequest('/api/query', {
           query: value,
-          index: fileName,
-          openAiKey
+          index: fullFileName,
+          userId
         });
       }
 
@@ -138,8 +138,8 @@ const ChatWindow: FC<ChatWindowProps> = ({
   };
 
   const onSearch = async () => {
-    if (!openAiKey) {
-      message.error('Please set your openAI key');
+    if (!userId) {
+      message.error('Please set your userId');
       return;
     }
 
@@ -182,7 +182,7 @@ const ChatWindow: FC<ChatWindowProps> = ({
       title={fileName ? `Chat with ${fileName}` : 'Select File'}
       extra={
         <Popconfirm
-          disabled={!openAiKey}
+          disabled={!userId}
           title="This will consume a large amount of tokens"
           description="Do you want to continue?"
           okText="Yes"
@@ -190,7 +190,7 @@ const ChatWindow: FC<ChatWindowProps> = ({
           onConfirm={onSummarizeClick}
         >
           <Tooltip title="Summarize">
-            <Button icon={<ProfileOutlined />} disabled={!openAiKey}></Button>
+            <Button icon={<ProfileOutlined />} disabled={!userId}></Button>
           </Tooltip>
         </Popconfirm>
       }
@@ -217,9 +217,9 @@ const ChatWindow: FC<ChatWindowProps> = ({
       <div className="p-4 pb-0 border-t border-t-gray-200 border-solid border-x-0 border-b-0">
         <div className="relative">
           <Input.TextArea
-            disabled={loading || !openAiKey}
+            disabled={loading || !userId}
             size="large"
-            placeholder={openAiKey ? 'Input your question' : 'Configure your OpenAI key'}
+            placeholder={userId ? 'Input your question' : 'Configure your userId'}
             value={query}
             className="pr-[36px]"
             onKeyDown={onKeyDown}

@@ -1,3 +1,3 @@
 export default function isPdf(ext: string) {
-  return ext === '.pdf';
+  return ext === 'application/pdf';
 }

@@ -58,6 +58,7 @@ const Home = () => {
   async function getFile() {
     if (currentFile) {
       setLoading(true);
+      console.log(currentFile)
       const file = await downloadFile(currentFile);
       setLoading(false);
 

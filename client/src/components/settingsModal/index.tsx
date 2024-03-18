@@ -34,13 +34,13 @@ export default function SettingsModal({ open, onChange }: SettingsModalProps) {
       <Form
         form={form}
         initialValues={{
-          apiKey: settings.current?.apiKey
+          userId: settings.current?.userId
         }}
       >
         <Form.Item
-          label="apiKey"
-          name="apiKey"
-          rules={[{ required: true, message: 'Please input your apiKey!' }]}
+          label="userId"
+          name="userId"
+          rules={[{ required: true, message: 'Please input your userId!' }]}
         >
           <Input />
         </Form.Item>
