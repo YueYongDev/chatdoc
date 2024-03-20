@@ -12,15 +12,12 @@
   ],
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/:path(.*)",
       "destination": "https://docmind.ytools.xyz/:path*"
     },
     {
       "source": "/static/:path(.*)",
       "destination": "https://chatdoc-backend.ytools.xyz/static/:path"
     }
-  ],
-  "env": {
-    "BRANCH": "newUi"
-  }
+  ]
 }
