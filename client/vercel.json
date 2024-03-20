@@ -13,7 +13,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "http://60.204.218.131:8999/:path*"
+      "destination": "https://docmind.ytools.xyz/:path*"
     },
     {
       "source": "/static/:path(.*)",
