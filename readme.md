@@ -1,6 +1,6 @@
 # ChatDoc
 
-一个使用 `openai` 与文档对话的例子, 目前支持的文档类型 `.pdf`, `.epub`, `.md`, `.txt`, `.docx`, `web`
+一个使用 `zhipuAI` 与文档对话的例子, 目前支持的文档类型 `.pdf`, `.epub`, `.md`, `.txt`, `.docx`, `web`
 
 ## 后端
 
@@ -12,7 +12,8 @@
 ```shell
 # my local node version v16.11.0
 cd client
-./start
+yarn
+npm run dev
 ```
 <!-- 
 ## Docker
