@@ -19,5 +19,8 @@
       "source": "/static/:path(.*)",
       "destination": "https://chatdoc-backend.ytools.xyz/static/:path"
     }
-  ]
+  ],
+  "env": {
+    "BRANCH": "newUi"
+  }
 }
