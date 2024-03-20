@@ -1,0 +1,61 @@
+/* 定义 Markdown 容器的基本样式 */
+.markdown-container {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    line-height: 1.6;
+    padding: 15px;
+    color: #333;
+}
+
+/* 调整标题样式 */
+.markdown-container h1 {
+    color: #d35400;
+    border-bottom: 1px solid #eee;
+}
+
+/* 调整段落样式 */
+.markdown-container p {
+    margin-bottom: 1em;
+}
+
+/* 调整代码块样式 */
+.markdown-container pre {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+/* 调整链接样式 */
+.markdown-container a {
+    color: #3498db;
+}
+ol, ul {
+    padding: 0;
+    margin: 0;
+}
+
+ol li, ul li {
+    /* 如果需要，可以设置所需的上下间距 */
+    margin-bottom: 1px;
+}
+
+/* 特别适用于嵌套列表 */
+ol li ul, ul li ul {
+    margin-top: 1px;
+}
+
+/* 确保 span 是内联元素，它不会导致换行 */
+li span {
+    display: inline; /* 默认值，通常不需要设置 */
+}
+
+/* 如果你想让列表标记显示在内容外部，确保 li 的样式如下 */
+li {
+    list-style-position: outside; /* 默认值，通常不需要设置 */
+    width: 100%; /* 确保有足够的宽度 */
+}
+
+/* 如果你的列表项内容很长，确保有足够的空间来避免换行 */
+li {
+    max-width: none; /* 如果先前有设置 */
+}

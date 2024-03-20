@@ -113,3 +113,9 @@ body {
 
 @media (prefers-color-scheme: dark) {
 }
+
+/* 在CSS中调整样式 */
+.markdown-container p {
+  margin-top: 0;
+  margin-bottom: 0;
+}

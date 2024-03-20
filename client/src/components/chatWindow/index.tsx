@@ -8,6 +8,7 @@ import fetchRequest from '../../utils/fetch';
 import userIdKey from '../../utils/userIdKey';
 import { MessageItem } from './constants';
 import Message from './Message';
+import '../../styles/markdown-styles.css'; // 引入你的 CSS 样式文件
 
 interface ChatWindowProps {
   fileName: string;

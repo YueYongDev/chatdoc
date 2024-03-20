@@ -23,7 +23,7 @@ const App = () => {
         const specificParams = {
             userId: userId
         };
-        console.log(specificParams)
+
         const res = await request.get('/api/file-list', {params: specificParams});
         setFileList(res.data);
 
@@ -35,6 +35,7 @@ const App = () => {
     function handleFileClick(item: any) {
         const file = fileList.find((f) => f.name === item.name) || null;
         setCurrentFile(file);
+        console.log("点击切换文件",file)
     }
 
     function toggleSettingModal(open: boolean) {
